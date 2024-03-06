@@ -18,7 +18,7 @@
 
 # 📖 About This Project <a name="about-project"></a>
 
-> TodoList-App-Mren is built with ReactJS, Tailwind CSS, and uses React Query for data fetching. The backend is powered by ExpressJS and NodeJS, without MongoDB. This project aims to improve skills in React Query and full-stack development. Check out sample images or download the project.
+> TodoList-App-Mren is built with ReactJS, Tailwind CSS, and uses React Query for data fetching. The backend is powered by ExpressJS and NodeJS, without MongoDB. This project aims to improve skills in React Query and full-stack development. Check out sample images or download the project...
 
 # Sample Of Website <a name="Sample-Of-Website"></a>
 
