@@ -2,8 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "node src/app.js"
+    "dev": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
