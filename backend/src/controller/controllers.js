@@ -1,5 +1,11 @@
 import uniqid from 'uniqid'
-import { getList, deleteTodoById, editTodoById, addNewTodo } from '../db/db.js'
+import {
+  getList,
+  deleteTodoById,
+  editTodoById,
+  addNewTodo,
+  checkTodo,
+} from '../db/db.js'
 
 // our controllers/ get / remove / edit and more....
 export const homePage = (req, res) => {
@@ -25,4 +31,9 @@ export const deleteTodo = (req, res) => {
 export const editTodo = (req, res) => {
   const { id, text } = req.body
   editTodoById(id, text)
+}
+
+export const changeCheckTodo = (req, res) => {
+  const { id } = req.body
+  checkTodo(id)
 }
