@@ -24,7 +24,8 @@ export const addTodo = (req, res) => {
 }
 
 export const deleteTodo = (req, res) => {
-  const { id } = req.body
+  const { id } = req.params
+  console.log('this is id params', id)
   deleteTodoById(id)
 }
 

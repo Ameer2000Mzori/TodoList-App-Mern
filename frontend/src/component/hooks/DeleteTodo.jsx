@@ -1,22 +1,22 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 
-const deleteTodo = (todoId) => axios.delete(`/deletetodo/${todoId}`)
-
 const DeleteTodo = () => {
   const queryClient = useQueryClient()
-  const { mutate } = useMutation(deleteTodo, {
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries(['todos'])
-    },
-  })
 
-  const handleDelete = (todoId) => {
-    mutate(todoId)
-  }
+  const { mutate: deleteTask } = useMutation(
+    (id) => axios.delete(`/deletetodo/:${id}`),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['todos'])
+      },
+      onError: () => {
+        console.log('there was an error')
+      },
+    }
+  )
 
-  return { handleDelete }
+  return deleteTask
 }
 
 export default DeleteTodo

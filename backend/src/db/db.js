@@ -21,7 +21,7 @@ export const getList = () => list
 
 // delete todo
 export const deleteTodoById = (id) => {
-  console.log('this is id', id)
+  id = Number(id)
   list = list.filter((todo) => todo.id !== id)
   console.log('list after delete', list)
 }

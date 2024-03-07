@@ -13,7 +13,7 @@ const Router = express.Router()
 Router.get('/', homePage)
 Router.get('/listtodo', listTodo)
 Router.post('/addtodo', addTodo)
-Router.delete('/deletetodo', deleteTodo)
+Router.delete('/deletetodo/:id', deleteTodo)
 Router.patch('/edittodo', editTodo)
 Router.patch('/checktodo', changeCheckTodo)
 
