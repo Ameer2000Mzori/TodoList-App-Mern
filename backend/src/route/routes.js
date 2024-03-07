@@ -4,6 +4,7 @@ import { homePage, listTodo } from '../controller/controllers.js'
 const Router = express.Router()
 
 Router.get('/', homePage)
-Router.get('/listTodo', listTodo)
+Router.get('/listtodo', listTodo)
+Router.delete('/deletetodo', deleteTodo)
 
 export default Router
