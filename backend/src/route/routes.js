@@ -1,5 +1,5 @@
 import express from 'express'
-import { homePage, listTodo } from '../controller/controllers.js'
+import { homePage, listTodo, deleteTodo } from '../controller/controllers.js'
 
 const Router = express.Router()
 

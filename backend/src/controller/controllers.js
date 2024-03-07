@@ -1,15 +1,15 @@
-import { list } from '../db/dbList.js'
+import { getList, deleteTodoById } from '../db/db.js'
 
+// our controllers/ get / remove / edit and more....
 export const homePage = (req, res) => {
   res.send('Hello World from backend')
 }
 
 export const listTodo = (req, res) => {
-  res.send(list)
+  res.send(getList())
 }
 
 export const deleteTodo = (req, res) => {
-  const { text } = req.body
-  console.log(text)
-  res.send('this is what you typed', text)
+  const { id } = req.body
+  deleteTodoById(id)
 }
