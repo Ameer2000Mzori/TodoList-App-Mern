@@ -18,7 +18,7 @@
 
 # 📖 About This Project <a name="about-project"></a>
 
-> Real Estate Website is a website created with the MERN stack. With additional npm packages, you can create an account, delete an account, post a house for sale or rent, add favorites, remove favorites, and search for houses. Download the project for a demo test.
+> TodoList-App-Mren is built with ReactJS, Tailwind CSS, and uses React Query for data fetching. The backend is powered by ExpressJS and NodeJS, without MongoDB. This project aims to improve skills in React Query and full-stack development. Check out sample images or download the project...
 
 # Sample Of Website <a name="Sample-Of-Website"></a>
 
