@@ -1,9 +1,13 @@
-import React from 'react'
 import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
 
-export const FetchData = () => {
-  const result = useQuery({
-    queryKey: ['todo', todo],
-    queryFn: () => {},
+const FetchData = () => {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['todo'],
+    queryFn: () => axios.get('/listtodo').then((res) => res.data),
   })
+
+  return { data, isLoading, isError }
 }
+
+export default FetchData
