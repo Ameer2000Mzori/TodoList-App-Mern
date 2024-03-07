@@ -1,6 +1,6 @@
-import react from 'react'
+import Home from './component/pages/Home.jsx'
 function App() {
-  return <h1>this is develop branch</h1>
+  return <Home />
 }
 
 export default App
