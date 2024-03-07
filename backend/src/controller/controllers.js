@@ -9,6 +9,11 @@ export const listTodo = (req, res) => {
   res.send(getList())
 }
 
+export const addTodo = (req, res) => {
+  const { text } = req.body
+  console.log('got the new text wanted to add', text)
+}
+
 export const deleteTodo = (req, res) => {
   const { id } = req.body
   deleteTodoById(id)
