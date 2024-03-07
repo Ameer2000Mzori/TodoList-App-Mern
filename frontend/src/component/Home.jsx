@@ -1,11 +1,26 @@
 import React from 'react'
 import FetchData from './hooks/FetchData.jsx'
-import DeleteTodo from './hooks/DeleteTodo.jsx'
+// import DeleteTodo from './hooks/DeleteTodo.jsx'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import axios from 'axios'
 
 const Home = () => {
   const { data, isLoading, isError } = FetchData()
 
   console.log(isLoading, isError)
+
+  const queryClient = useQueryClient()
+
+  const { mutate: DeleteTodo } = useMutation({
+    mutationFn: (id) => axios.delete(`/deletetodo/${id}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['todos'] })
+      console.log('todo deleted successfully')
+    },
+    onError: (error) => {
+      console.log('there was an error', error)
+    },
+  })
 
   if (isLoading) return <div>loading...</div>
 
