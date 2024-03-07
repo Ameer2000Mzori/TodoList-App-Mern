@@ -31,3 +31,14 @@ export const editTodoById = (id, text) => {
 
   console.log('list after edit', list)
 }
+
+export const addNewTodo = (id, text) => {
+  const newTodo = {
+    id,
+    text,
+    done: false,
+  }
+
+  list.unshift(newTodo)
+  console.log('this is list after new todo added: ', list)
+}
