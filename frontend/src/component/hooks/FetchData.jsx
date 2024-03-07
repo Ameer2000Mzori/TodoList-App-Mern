@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const FetchData = () => {
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['todo'],
+    queryKey: ['todos'],
     queryFn: () => axios.get('/listtodo').then((res) => res.data),
   })
 

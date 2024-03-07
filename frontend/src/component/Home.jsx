@@ -1,5 +1,6 @@
 import React from 'react'
 import FetchData from './hooks/FetchData.jsx'
+import DeleteTodo from './hooks/DeleteTodo.jsx'
 
 const Home = () => {
   const { data, isLoading, isError } = FetchData()
@@ -38,7 +39,13 @@ const Home = () => {
                     </div>
 
                     <div className="flex text-end items-end justify-center flex-row gap-2  w-[20%] pr-1">
-                      <button>delete</button>
+                      <button
+                        onClick={() => {
+                          DeleteTodo(todo.id)
+                        }}
+                      >
+                        delete
+                      </button>
                       <button>edit</button>
                     </div>
                   </li>
