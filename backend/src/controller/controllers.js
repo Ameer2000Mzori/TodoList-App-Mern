@@ -1,3 +1,4 @@
+import uniqid from 'uniqid'
 import { getList, deleteTodoById, editTodoById } from '../db/db.js'
 
 // our controllers/ get / remove / edit and more....
@@ -11,7 +12,8 @@ export const listTodo = (req, res) => {
 
 export const addTodo = (req, res) => {
   const { text } = req.body
-  console.log('got the new text wanted to add', text)
+  const id = uniqid()
+  console.log('new text and id : ', text, id)
 }
 
 export const deleteTodo = (req, res) => {
