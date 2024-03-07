@@ -1,4 +1,4 @@
-import { getList, deleteTodoById } from '../db/db.js'
+import { getList, deleteTodoById, editTodoById } from '../db/db.js'
 
 // our controllers/ get / remove / edit and more....
 export const homePage = (req, res) => {
@@ -12,4 +12,9 @@ export const listTodo = (req, res) => {
 export const deleteTodo = (req, res) => {
   const { id } = req.body
   deleteTodoById(id)
+}
+
+export const editTodo = (req, res) => {
+  const { id, text } = req.body
+  editTodoById(id, text)
 }
