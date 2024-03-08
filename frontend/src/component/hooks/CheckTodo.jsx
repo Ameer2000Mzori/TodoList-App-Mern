@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
-const EditTodo = () => {
+const CheckTodo = () => {
   const queryClient = useQueryClient()
 
-  const editMutation = useMutation({
-    mutationFn: ({ id, text }) => axios.patch(`/edittodo/${id}`, { text }),
+  const checkMutation = useMutation({
+    mutationFn: (id) => axios.patch(`/checktodo/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries(['todos'])
       console.log('Todo updated successfully')
@@ -14,7 +14,7 @@ const EditTodo = () => {
     },
   })
 
-  return editMutation
+  return checkMutation
 }
 
-export default EditTodo
+export default CheckTodo

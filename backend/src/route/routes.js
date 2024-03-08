@@ -15,6 +15,6 @@ Router.get('/listtodo', listTodo)
 Router.post('/addtodo', addTodo)
 Router.delete('/deletetodo/:id', deleteTodo)
 Router.patch('/edittodo/:id', editTodo)
-Router.patch('/checktodo', changeCheckTodo)
+Router.patch('/checktodo/:id', changeCheckTodo)
 
 export default Router

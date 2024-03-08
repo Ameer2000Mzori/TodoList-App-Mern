@@ -62,7 +62,8 @@ export const editTodo = (req, res) => {
 
 export const changeCheckTodo = (req, res) => {
   const { id } = req.params
-  console.log('this is id', id)
+
+  console.log('this is id', Number(id))
   list = list.map((todo) =>
     todo.id === Number(id) ? { ...todo, checked: !todo.checked } : todo
   )

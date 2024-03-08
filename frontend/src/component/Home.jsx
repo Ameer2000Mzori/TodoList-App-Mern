@@ -2,10 +2,12 @@ import React from 'react'
 import FetchData from './hooks/FetchData.jsx'
 import useDeleteTodo from './hooks/DeleteTodo.jsx'
 import EditTodo from './hooks/EditTodo.jsx'
+import CheckTodo from './hooks/CheckTodo.jsx'
 
 const Home = () => {
   const { mutate: deleteTodo } = useDeleteTodo()
   const { mutate: newEditTodo } = EditTodo()
+  const { mutate: newCheckTodo } = CheckTodo()
   const { data, isLoading, isError } = FetchData()
 
   console.log(isLoading, isError)
@@ -32,9 +34,22 @@ const Home = () => {
                     className="w-[100%] h-[50px] text-start flex flex-row items-center justify-between bg-blue-600 overflow-hidden"
                   >
                     {todo.checked ? (
-                      <input type="checkbox" className="w-[10%]" checked />
+                      <input
+                        onClick={() => {
+                          newCheckTodo(todo.id)
+                        }}
+                        type="checkbox"
+                        className="w-[10%]"
+                        checked
+                      />
                     ) : (
-                      <input type="checkbox" className="w-[10%]" />
+                      <input
+                        onClick={() => {
+                          newCheckTodo(todo.id)
+                        }}
+                        type="checkbox"
+                        className="w-[10%]"
+                      />
                     )}
 
                     <div className="flex flex-row gap-2 w-[60%] h-[100%] pl-1 overflow-auto">
