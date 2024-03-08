@@ -41,10 +41,11 @@ export const addTodo = (req, res) => {
 }
 
 export const deleteTodo = (req, res) => {
-  const { id } = req.params
+  let { id } = req.params
   id = Number(id)
   list = list.filter((todo) => todo.id !== id)
   console.log('list after delete', list)
+  res.status(200).json({ message: 'Todo deleted successfully' })
 }
 
 export const editTodo = (req, res) => {
@@ -54,6 +55,8 @@ export const editTodo = (req, res) => {
   list = list.filter((todo) => (todo.id === id ? (todo.text = text) : text))
 
   console.log('list after edit', list)
+
+  res.status(200).json({ message: 'Todo edited successfully' })
 }
 
 export const changeCheckTodo = (req, res) => {
@@ -64,4 +67,6 @@ export const changeCheckTodo = (req, res) => {
   )
 
   console.log('this is list after changes: ', list)
+
+  res.status(200).json({ message: 'Todo changed successfully' })
 }
