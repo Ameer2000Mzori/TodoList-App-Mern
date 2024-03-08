@@ -1,9 +1,11 @@
 import React from 'react'
 import FetchData from './hooks/FetchData.jsx'
 import useDeleteTodo from './hooks/DeleteTodo.jsx'
+import EditTodo from './hooks/EditTodo.jsx'
 
 const Home = () => {
   const { mutate: deleteTodo } = useDeleteTodo()
+  const { mutate: newEditTodo } = EditTodo()
   const { data, isLoading, isError } = FetchData()
 
   console.log(isLoading, isError)
@@ -47,7 +49,14 @@ const Home = () => {
                       >
                         delete
                       </button>
-                      <button>edit</button>
+                      <button
+                        onClick={() => {
+                          const newText = 'this is edited todo' // Define the new text for the todo
+                          newEditTodo({ id: todo.id, text: newText }) // Call the mutation function with an object containing id and text
+                        }}
+                      >
+                        edit
+                      </button>
                     </div>
                   </li>
                 )

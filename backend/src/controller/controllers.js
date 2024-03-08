@@ -49,10 +49,11 @@ export const deleteTodo = (req, res) => {
 }
 
 export const editTodo = (req, res) => {
-  const { id, text } = req.body
+  const { text } = req.body
+  const { id } = req.params
   console.log('text and id got : ', id, text)
 
-  list = list.filter((todo) => (todo.id === id ? (todo.text = text) : text))
+  list = list.map((todo) => (todo.id === Number(id) ? { ...todo, text } : todo))
 
   console.log('list after edit', list)
 
@@ -60,10 +61,10 @@ export const editTodo = (req, res) => {
 }
 
 export const changeCheckTodo = (req, res) => {
-  const { id } = req.body
+  const { id } = req.params
   console.log('this is id', id)
   list = list.map((todo) =>
-    todo.id === id ? { ...todo, checked: !todo.checked } : todo
+    todo.id === Number(id) ? { ...todo, checked: !todo.checked } : todo
   )
 
   console.log('this is list after changes: ', list)
