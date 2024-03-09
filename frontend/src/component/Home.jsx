@@ -178,7 +178,8 @@ const Home = () => {
             {openForm ? (
               <FontAwesomeIcon
                 onClick={() => {
-                  newAddNewTodo({ text: addNewTodoText })
+                  if (addNewTodoText.length >= 2)
+                    newAddNewTodo({ text: addNewTodoText })
                 }}
                 icon={faCheck}
                 className=" text-red-400 w-[100%] h-[100%] text-[11px]"
