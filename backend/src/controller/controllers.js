@@ -1,22 +1,6 @@
 import uniqid from 'uniqid'
 
-let list = [
-  {
-    id: 1,
-    text: 'walk',
-    checked: false,
-  },
-  {
-    id: 2,
-    text: 'dance',
-    checked: true,
-  },
-  {
-    id: 3,
-    text: 'do things',
-    checked: false,
-  },
-]
+let list = []
 
 // our controllers/ get / remove / edit and more....
 export const homePage = (req, res) => {
@@ -29,6 +13,7 @@ export const listTodo = (req, res) => {
 
 export const addTodo = (req, res) => {
   const { text } = req.body
+  console.log('text got : ', text)
 
   const newTodo = {
     id: uniqid(),
@@ -38,14 +23,15 @@ export const addTodo = (req, res) => {
 
   list.unshift(newTodo)
   console.log('this is list after new todo added: ', list)
+  res.status(200).json({ message: 'Todo deleted successfully' })
 }
 
 export const deleteTodo = (req, res) => {
   let { id } = req.params
-  id = Number(id)
+
   list = list.filter((todo) => todo.id !== id)
-  console.log('list after delete', list)
   res.status(200).json({ message: 'Todo deleted successfully' })
+  console.log('list after delete', list)
 }
 
 export const editTodo = (req, res) => {
@@ -53,7 +39,7 @@ export const editTodo = (req, res) => {
   const { id } = req.params
   console.log('text and id got : ', id, text)
 
-  list = list.map((todo) => (todo.id === Number(id) ? { ...todo, text } : todo))
+  list = list.map((todo) => (todo.id === id ? { ...todo, text } : todo))
 
   console.log('list after edit', list)
 
@@ -63,12 +49,21 @@ export const editTodo = (req, res) => {
 export const changeCheckTodo = (req, res) => {
   const { id } = req.params
 
-  console.log('this is id', Number(id))
   list = list.map((todo) =>
-    todo.id === Number(id) ? { ...todo, checked: !todo.checked } : todo
+    todo.id === id ? { ...todo, checked: !todo.checked } : todo
   )
-
   console.log('this is list after changes: ', list)
 
   res.status(200).json({ message: 'Todo changed successfully' })
+}
+
+export const setTodoEdit = (req, res) => {
+  const { id } = req.params
+
+  list = list.map((todo) =>
+    todo.id === id ? { ...todo, edited: !todo.edited } : todo
+  )
+  console.log('this is list after changes: ', list)
+
+  res.status(200).json({ message: 'Todo edit changed successfully' })
 }
