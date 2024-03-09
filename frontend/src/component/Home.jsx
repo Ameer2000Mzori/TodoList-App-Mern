@@ -19,7 +19,9 @@ import {
   AddNewTodoStyled,
 } from './hooks/StyledComponents.jsx'
 const Home = () => {
+  // use states
   const [openForm, setOpenForm] = useState(false)
+  const [newEdit, setNewEdit] = useState(false)
   const { mutate: deleteTodo } = useDeleteTodo()
   const { mutate: newEditTodo } = EditTodo()
   const { mutate: newCheckTodo } = CheckTodo()
@@ -56,47 +58,61 @@ const Home = () => {
                     key={todo.id}
                     className="w-[100%] h-[50px] text-start flex flex-row items-center justify-between bg-blue-600 overflow-hidden"
                   >
-                    {todo.checked ? (
-                      <FontAwesomeIcon
-                        icon={faSquareCheck}
-                        onClick={() => {
-                          newCheckTodo(todo.id)
-                        }}
-                        className=" ml-2 w-[25px] h-[25px] flex flex-col "
-                      />
+                    {newEdit ? (
+                      <div className="flex text-end items-end justify-between flex-row gap-2  w-[100%] p-4">
+                        <input type="text" />
+
+                        <button
+                          onClick={() => {
+                            setNewEdit((prev) => !prev)
+                          }}
+                        >
+                          <FontAwesomeIcon icon={faCheck} />
+                        </button>
+                      </div>
                     ) : (
-                      <FontAwesomeIcon
-                        icon={faSquareXmark}
-                        onClick={() => {
-                          newCheckTodo(todo.id)
-                        }}
-                        className=" ml-2 w-[25px] h-[25px] flex flex-col text-gray-700"
-                      />
+                      <>
+                        {todo.checked ? (
+                          <FontAwesomeIcon
+                            icon={faSquareCheck}
+                            onClick={() => {
+                              newCheckTodo(todo.id)
+                            }}
+                            className=" ml-2 w-[25px] h-[25px] flex flex-col "
+                          />
+                        ) : (
+                          <FontAwesomeIcon
+                            icon={faSquareXmark}
+                            onClick={() => {
+                              newCheckTodo(todo.id)
+                            }}
+                            className=" ml-2 w-[25px] h-[25px] flex flex-col text-gray-700"
+                          />
+                        )}
+                        <div className="flex flex-row gap-2 w-[60%] h-[100%] pl-1 overflow-auto">
+                          <h1 className="flex flex-col text-center items-center justify-center">
+                            {todo.text}
+                          </h1>
+                        </div>
+
+                        <div className="flex text-end items-end justify-center flex-row gap-4  w-[20%] pr-1">
+                          <button
+                            onClick={() => {
+                              deleteTodo(todo.id)
+                            }}
+                          >
+                            <FontAwesomeIcon icon={faTrashCan} />
+                          </button>
+                          <button
+                            onClick={() => {
+                              setNewEdit((prev) => !prev)
+                            }}
+                          >
+                            <FontAwesomeIcon icon={faPen} />
+                          </button>
+                        </div>
+                      </>
                     )}
-
-                    <div className="flex flex-row gap-2 w-[60%] h-[100%] pl-1 overflow-auto">
-                      <h1 className="flex flex-col text-center items-center justify-center">
-                        {todo.text}
-                      </h1>
-                    </div>
-
-                    <div className="flex text-end items-end justify-center flex-row gap-4  w-[20%] pr-1">
-                      <button
-                        onClick={() => {
-                          deleteTodo(todo.id)
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faTrashCan} />
-                      </button>
-                      <button
-                        onClick={() => {
-                          const newText = 'this is edited todo' // Define the new text for the todo
-                          newEditTodo({ id: todo.id, text: newText }) // Call the mutation function with an object containing id and text
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faPen} />
-                      </button>
-                    </div>
                   </li>
                 )
               })}
@@ -116,3 +132,6 @@ const Home = () => {
 }
 
 export default Home
+
+//        const newText = 'this is edited todo' // Define the new text for the todo
+//        newEditTodo({ id: todo.id, text: newText }) // Call the mutation function with an object containing id and text
