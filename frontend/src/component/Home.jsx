@@ -14,11 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import {
-  BtnWrap,
-  SubmitBtnStyled,
-  AddNewTodoStyled,
-} from './hooks/StyledComponents.jsx'
+import { AddNewTodoStyled } from './hooks/StyledComponents.jsx'
 
 const Home = () => {
   // use states
@@ -61,17 +57,21 @@ const Home = () => {
                     className="w-[100%] h-[50px] text-start flex flex-row items-center justify-between bg-blue-600 overflow-hidden"
                   >
                     {todo.edited ? (
-                      <div className="flex text-end items-end justify-between flex-row gap-2  w-[100%] p-4">
+                      <form className="flex text-end items-end justify-between flex-row gap-2  w-[100%] p-4">
                         <input type="text" />
 
                         <button
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.preventDefault()
                             newSetEditTodo(todo.id)
                           }}
                         >
-                          <FontAwesomeIcon icon={faCheck} />
+                          <FontAwesomeIcon
+                            icon={faCheck}
+                            className="text-green-500"
+                          />
                         </button>
-                      </div>
+                      </form>
                     ) : (
                       <>
                         {todo.checked ? (
@@ -80,7 +80,7 @@ const Home = () => {
                             onClick={() => {
                               newCheckTodo(todo.id)
                             }}
-                            className=" ml-2 w-[25px] h-[25px] flex flex-col "
+                            className=" ml-2 w-[25px] h-[25px] flex flex-col  text-green-500"
                           />
                         ) : (
                           <FontAwesomeIcon
@@ -88,7 +88,7 @@ const Home = () => {
                             onClick={() => {
                               newCheckTodo(todo.id)
                             }}
-                            className=" ml-2 w-[25px] h-[25px] flex flex-col text-gray-700"
+                            className="  ml-2 w-[25px] h-[25px] flex flex-col text-gray-700"
                           />
                         )}
                         <div className="flex flex-row gap-2 w-[60%] h-[100%] pl-1 overflow-auto">
