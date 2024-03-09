@@ -86,7 +86,7 @@ const Home = () => {
                           setEditTodoId(todo.id)
                           newSetEditTodo(todo.id)
                         }}
-                        className="flex text-end items-end justify-between flex-row gap-2  w-[100%] p-4"
+                        className="flex text-end items-end justify-between flex-row gap-2  text-black w-[100%] p-4"
                       >
                         <input
                           type="text"
@@ -166,6 +166,3 @@ const Home = () => {
 }
 
 export default Home
-
-//        const newText = 'this is edited todo' // Define the new text for the todo
-// Call the mutation function with an object containing id and text
