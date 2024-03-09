@@ -27,6 +27,7 @@ const validationSchema = Yup.object().shape({
 const Home = () => {
   // use states
   const [openForm, setOpenForm] = useState(false)
+  const [editTodoId, setEditTodoId] = useState(false)
   const { mutate: deleteTodo } = useDeleteTodo()
   const { mutate: newEditTodo } = EditTodo()
   const { mutate: newCheckTodo } = CheckTodo()
@@ -49,7 +50,9 @@ const Home = () => {
     },
 
     onSubmit: (values) => {
-      console.log(values)
+      console.log(values, editTodoId)
+
+      newEditTodo({ id: editTodoId, text: values.newtodo })
     },
     validationSchema: validationSchema,
   })
@@ -77,7 +80,12 @@ const Home = () => {
                   >
                     {todo.edited ? (
                       <form
-                        onSubmit={formik.handleSubmit}
+                        onSubmit={(e) => {
+                          e.preventDefault()
+                          formik.handleSubmit()
+                          setEditTodoId(todo.id)
+                          newSetEditTodo(todo.id)
+                        }}
                         className="flex text-end items-end justify-between flex-row gap-2  w-[100%] p-4"
                       >
                         <input
@@ -160,4 +168,4 @@ const Home = () => {
 export default Home
 
 //        const newText = 'this is edited todo' // Define the new text for the todo
-//        newEditTodo({ id: todo.id, text: newText }) // Call the mutation function with an object containing id and text
+// Call the mutation function with an object containing id and text
