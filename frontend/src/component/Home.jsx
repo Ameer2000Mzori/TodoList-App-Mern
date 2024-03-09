@@ -3,7 +3,7 @@ import FetchData from './hooks/FetchData.jsx'
 import useDeleteTodo from './hooks/DeleteTodo.jsx'
 import EditTodo from './hooks/EditTodo.jsx'
 import CheckTodo from './hooks/CheckTodo.jsx'
-
+import { BtnWrap, SubmitBtnStyled } from './hooks/StyledComponents.jsx'
 const Home = () => {
   const { mutate: deleteTodo } = useDeleteTodo()
   const { mutate: newEditTodo } = EditTodo()
@@ -78,6 +78,9 @@ const Home = () => {
               })}
             </ul>
           </div>
+          <BtnWrap>
+            <SubmitBtnStyled>submit</SubmitBtnStyled>
+          </BtnWrap>
         </div>
       </div>
     </>
