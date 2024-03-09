@@ -29,6 +29,7 @@ const Home = () => {
   // use states
   const [openForm, setOpenForm] = useState(false)
   const [editTodoId, setEditTodoId] = useState(false)
+  const [addNewTodoText, setAddNewTodoText] = useState('')
   const { mutate: deleteTodo } = useDeleteTodo()
   const { mutate: newEditTodo } = EditTodo()
   const { mutate: newCheckTodo } = CheckTodo()
@@ -73,7 +74,15 @@ const Home = () => {
         <div className="md:h-[600px] md:w-[460px] h-[560px] w-[360px] bg-slate-400 rounded-md flex flex-col text-center items-center justify-start overflow-hidden relative">
           <div className="h-[10vh] w-[100%] bg-[#265073] text-white flex flex-col text-center items-center justify-center">
             {openForm ? (
-              <input type="text" required />
+              <input
+                className="text-black"
+                value={addNewTodoText}
+                onChange={(e) => {
+                  setAddNewTodoText(e.target.value)
+                }}
+                type="text"
+                required
+              />
             ) : (
               <h1 className="text-[2.2rem] font-bold">TODOS </h1>
             )}
@@ -104,7 +113,7 @@ const Home = () => {
                           onBlur={formik.handleBlur}
                           value={formik.values.newtodo}
                         />
-                        <p className=" text-[12px] text-red-700 absolute  top-[35%] left-[60%]">
+                        <p className=" text-[15px] text-zinc-700 absolute  top-[35%] left-[60%]">
                           {formik.errors.newtodo}
                         </p>
 
@@ -166,7 +175,13 @@ const Home = () => {
           </div>
           <AddNewTodoStyled onClick={addNewTodo}>
             {openForm ? (
-              <FontAwesomeIcon icon={faCheck} className=" text-red-400" />
+              <FontAwesomeIcon
+                onClick={() => {
+                  newAddNewTodo({ text: addNewTodoText })
+                }}
+                icon={faCheck}
+                className=" text-red-400 w-[100%] h-[100%] text-[11px]"
+              />
             ) : (
               <FontAwesomeIcon icon={faPlus} className=" text-black" />
             )}
