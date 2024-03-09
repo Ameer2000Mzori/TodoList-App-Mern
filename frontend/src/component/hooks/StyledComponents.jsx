@@ -55,3 +55,28 @@ export const SubmitBtnStyled = styled.button`
   // if you want to add or use animations dont forget the $ for the animation to work.
   // animation: {pulseAnimation} 1s infinite alternate;
 `
+
+export const AddNewTodoStyled = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 35px;
+  width: 35px;
+  color: white;
+  transition: all 100ms;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+`
