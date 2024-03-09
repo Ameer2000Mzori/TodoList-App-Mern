@@ -22,6 +22,11 @@ export const BtnWrap = styled.div`
   text-align: center;
   justify-content: center;
   align-items: center;
+  background-color: #76abac;
+  border: solid gray 1px;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
 `
 
 export const SubmitBtnStyled = styled.button`
