@@ -24,6 +24,7 @@
 
 ![alt text](./sample/1.png)
 ![alt text](./sample/2.png)
+![alt text](./sample/3.png)
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -53,17 +54,15 @@
 - **[TAILWIND ]**
 - **[JAVASCRIPT ]**
 - **[REACT ]**
-
 - **[BACKEND ]**
 - **[NODE.JS ]**
 - **[EXPRESS.JS ]**
 - **[MANGO.DB ]**
-
 - **[TOOLS ]**
-- **[ESLINT ]**
+- **[React Qury ]**
+- **[UNIQ ID ]**
 - **[PRETTIER ]**
-
-- **[AND MORE ]**
+- **[AND MORE...]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
