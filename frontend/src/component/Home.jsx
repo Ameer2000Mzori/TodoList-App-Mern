@@ -3,7 +3,14 @@ import FetchData from './hooks/FetchData.jsx'
 import useDeleteTodo from './hooks/DeleteTodo.jsx'
 import EditTodo from './hooks/EditTodo.jsx'
 import CheckTodo from './hooks/CheckTodo.jsx'
-import { faPlus, faCheck } from '@fortawesome/free-solid-svg-icons'
+import {
+  faPlus,
+  faCheck,
+  faPen,
+  faTrashCan,
+  faSquareCheck,
+  faSquareXmark,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import {
@@ -50,35 +57,36 @@ const Home = () => {
                     className="w-[100%] h-[50px] text-start flex flex-row items-center justify-between bg-blue-600 overflow-hidden"
                   >
                     {todo.checked ? (
-                      <input
+                      <FontAwesomeIcon
+                        icon={faSquareCheck}
                         onClick={() => {
                           newCheckTodo(todo.id)
                         }}
-                        type="checkbox"
-                        className="w-[10%]"
-                        checked
+                        className=" ml-2 w-[25px] h-[25px] flex flex-col "
                       />
                     ) : (
-                      <input
+                      <FontAwesomeIcon
+                        icon={faSquareXmark}
                         onClick={() => {
                           newCheckTodo(todo.id)
                         }}
-                        type="checkbox"
-                        className="w-[10%]"
+                        className=" ml-2 w-[25px] h-[25px] flex flex-col text-gray-700"
                       />
                     )}
 
                     <div className="flex flex-row gap-2 w-[60%] h-[100%] pl-1 overflow-auto">
-                      <h1>{todo.text}</h1>
+                      <h1 className="flex flex-col text-center items-center justify-center">
+                        {todo.text}
+                      </h1>
                     </div>
 
-                    <div className="flex text-end items-end justify-center flex-row gap-2  w-[20%] pr-1">
+                    <div className="flex text-end items-end justify-center flex-row gap-4  w-[20%] pr-1">
                       <button
                         onClick={() => {
                           deleteTodo(todo.id)
                         }}
                       >
-                        delete
+                        <FontAwesomeIcon icon={faTrashCan} />
                       </button>
                       <button
                         onClick={() => {
@@ -86,7 +94,7 @@ const Home = () => {
                           newEditTodo({ id: todo.id, text: newText }) // Call the mutation function with an object containing id and text
                         }}
                       >
-                        edit
+                        <FontAwesomeIcon icon={faPen} />
                       </button>
                     </div>
                   </li>
