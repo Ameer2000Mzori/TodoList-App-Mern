@@ -39,6 +39,7 @@ const Home = () => {
 
   const addNewTodo = () => {
     setOpenForm((prev) => !prev)
+    setAddNewTodoText('')
   }
 
   useEffect(() => {
