@@ -5,16 +5,19 @@ let list = [
     id: 1,
     text: 'walk',
     checked: false,
+    edited: false,
   },
   {
     id: 2,
     text: 'dance',
     checked: true,
+    edited: false,
   },
   {
     id: 3,
     text: 'do things',
     checked: false,
+    edited: false,
   },
 ]
 
@@ -67,7 +70,15 @@ export const changeCheckTodo = (req, res) => {
   list = list.map((todo) =>
     todo.id === Number(id) ? { ...todo, checked: !todo.checked } : todo
   )
+}
 
+export const setTodoEdit = (req, res) => {
+  const { id } = req.params
+
+  console.log('this is id', Number(id))
+  list = list.map((todo) =>
+    todo.id === Number(id) ? { ...todo, edited: !todo.edited } : todo
+  )
   console.log('this is list after changes: ', list)
 
   res.status(200).json({ message: 'Todo changed successfully' })
