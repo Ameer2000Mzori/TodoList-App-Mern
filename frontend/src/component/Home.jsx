@@ -3,6 +3,7 @@ import FetchData from './hooks/FetchData.jsx'
 import useDeleteTodo from './hooks/DeleteTodo.jsx'
 import EditTodo from './hooks/EditTodo.jsx'
 import CheckTodo from './hooks/CheckTodo.jsx'
+import SetEditTodo from './hooks/SetEditTodo.jsx'
 import {
   faPlus,
   faCheck,
@@ -18,13 +19,14 @@ import {
   SubmitBtnStyled,
   AddNewTodoStyled,
 } from './hooks/StyledComponents.jsx'
+
 const Home = () => {
   // use states
   const [openForm, setOpenForm] = useState(false)
-  const [newEdit, setNewEdit] = useState(false)
   const { mutate: deleteTodo } = useDeleteTodo()
   const { mutate: newEditTodo } = EditTodo()
   const { mutate: newCheckTodo } = CheckTodo()
+  const { mutate: newSetEditTodo } = SetEditTodo()
   const { data, isLoading, isError } = FetchData()
 
   const addNewTodo = () => {
@@ -58,13 +60,13 @@ const Home = () => {
                     key={todo.id}
                     className="w-[100%] h-[50px] text-start flex flex-row items-center justify-between bg-blue-600 overflow-hidden"
                   >
-                    {newEdit ? (
+                    {todo.edited ? (
                       <div className="flex text-end items-end justify-between flex-row gap-2  w-[100%] p-4">
                         <input type="text" />
 
                         <button
                           onClick={() => {
-                            setNewEdit((prev) => !prev)
+                            newSetEditTodo(todo.id)
                           }}
                         >
                           <FontAwesomeIcon icon={faCheck} />
@@ -105,7 +107,7 @@ const Home = () => {
                           </button>
                           <button
                             onClick={() => {
-                              setNewEdit((prev) => !prev)
+                              newSetEditTodo(todo.id)
                             }}
                           >
                             <FontAwesomeIcon icon={faPen} />

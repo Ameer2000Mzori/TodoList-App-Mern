@@ -70,6 +70,9 @@ export const changeCheckTodo = (req, res) => {
   list = list.map((todo) =>
     todo.id === Number(id) ? { ...todo, checked: !todo.checked } : todo
   )
+  console.log('this is list after changes: ', list)
+
+  res.status(200).json({ message: 'Todo changed successfully' })
 }
 
 export const setTodoEdit = (req, res) => {
@@ -81,5 +84,5 @@ export const setTodoEdit = (req, res) => {
   )
   console.log('this is list after changes: ', list)
 
-  res.status(200).json({ message: 'Todo changed successfully' })
+  res.status(200).json({ message: 'Todo edit changed successfully' })
 }
