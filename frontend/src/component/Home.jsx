@@ -139,6 +139,7 @@ const Home = () => {
                           </button>
                           <button
                             onClick={() => {
+                              formik.values.newtodo = ''
                               newSetEditTodo(todo.id)
                             }}
                           >
