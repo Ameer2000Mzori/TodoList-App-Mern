@@ -13,8 +13,16 @@ import {
   faSquareXmark,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
 import { AddNewTodoStyled } from './hooks/StyledComponents.jsx'
+
+const validationSchema = Yup.object().shape({
+  newtodo: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+})
 
 const Home = () => {
   // use states
@@ -34,6 +42,17 @@ const Home = () => {
   }, [openForm])
 
   console.log(isLoading, isError)
+
+  const formik = useFormik({
+    initialValues: {
+      newtodo: '',
+    },
+
+    onSubmit: (values) => {
+      console.log(values)
+    },
+    validationSchema: validationSchema,
+  })
 
   if (isLoading) return <div>loading...</div>
 
@@ -57,15 +76,20 @@ const Home = () => {
                     className="w-[100%] h-[50px] text-start flex flex-row items-center justify-between bg-blue-600 overflow-hidden"
                   >
                     {todo.edited ? (
-                      <form className="flex text-end items-end justify-between flex-row gap-2  w-[100%] p-4">
-                        <input type="text" />
+                      <form
+                        onSubmit={formik.handleSubmit}
+                        className="flex text-end items-end justify-between flex-row gap-2  w-[100%] p-4"
+                      >
+                        <input
+                          type="text"
+                          id="newtodo"
+                          name="newtodo"
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          value={formik.values.newtodo}
+                        />
 
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault()
-                            newSetEditTodo(todo.id)
-                          }}
-                        >
+                        <button type="submit">
                           <FontAwesomeIcon
                             icon={faCheck}
                             className="text-green-500"
@@ -80,7 +104,7 @@ const Home = () => {
                             onClick={() => {
                               newCheckTodo(todo.id)
                             }}
-                            className=" ml-2 w-[25px] h-[25px] flex flex-col  text-green-500"
+                            className=" ml-2 w-[25px] h-[25px] flex flex-col  text-green-500 cursor-pointer"
                           />
                         ) : (
                           <FontAwesomeIcon
@@ -88,7 +112,7 @@ const Home = () => {
                             onClick={() => {
                               newCheckTodo(todo.id)
                             }}
-                            className="  ml-2 w-[25px] h-[25px] flex flex-col text-gray-700"
+                            className="  ml-2 w-[25px] h-[25px] flex flex-col text-gray-700 cursor-pointer"
                           />
                         )}
                         <div className="flex flex-row gap-2 w-[60%] h-[100%] pl-1 overflow-auto">
