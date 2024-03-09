@@ -51,8 +51,10 @@ const Home = () => {
 
     onSubmit: (values) => {
       console.log(values, editTodoId)
-
-      newEditTodo({ id: editTodoId, text: values.newtodo })
+      if (values.newtodo.length <= 2) {
+      } else {
+        newEditTodo({ id: editTodoId, text: values.newtodo })
+      }
     },
     validationSchema: validationSchema,
   })
@@ -86,7 +88,7 @@ const Home = () => {
                           setEditTodoId(todo.id)
                           newSetEditTodo(todo.id)
                         }}
-                        className="flex text-end items-end justify-between flex-row gap-2  text-black w-[100%] p-4"
+                        className=" relative flex text-end items-end justify-between flex-row gap-2  text-black w-[100%] p-4"
                       >
                         <input
                           type="text"
@@ -96,6 +98,9 @@ const Home = () => {
                           onBlur={formik.handleBlur}
                           value={formik.values.newtodo}
                         />
+                        <p className=" text-[12px] text-red-700 absolute  top-[35%] left-[60%]">
+                          {formik.errors.newtodo}
+                        </p>
 
                         <button type="submit">
                           <FontAwesomeIcon
