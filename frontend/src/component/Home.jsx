@@ -4,6 +4,7 @@ import useDeleteTodo from './hooks/DeleteTodo.jsx'
 import EditTodo from './hooks/EditTodo.jsx'
 import CheckTodo from './hooks/CheckTodo.jsx'
 import SetEditTodo from './hooks/SetEditTodo.jsx'
+import AddNewTodo from './hooks/AddNewTodo.jsx'
 import {
   faPlus,
   faCheck,
@@ -32,6 +33,7 @@ const Home = () => {
   const { mutate: newEditTodo } = EditTodo()
   const { mutate: newCheckTodo } = CheckTodo()
   const { mutate: newSetEditTodo } = SetEditTodo()
+  const { mutate: newAddNewTodo } = AddNewTodo()
   const { data, isLoading, isError } = FetchData()
 
   const addNewTodo = () => {
@@ -70,7 +72,11 @@ const Home = () => {
       <div className="h-[100vh] w-[100vw] text-center items-center justify-center flex flex-col ">
         <div className="md:h-[600px] md:w-[460px] h-[560px] w-[360px] bg-slate-400 rounded-md flex flex-col text-center items-center justify-start overflow-hidden relative">
           <div className="h-[10vh] w-[100%] bg-[#265073] text-white flex flex-col text-center items-center justify-center">
-            <h1 className="text-[2.2rem] font-bold">TODOS </h1>
+            {openForm ? (
+              <input type="text" required />
+            ) : (
+              <h1 className="text-[2.2rem] font-bold">TODOS </h1>
+            )}
           </div>
           <div className="h-[90vh] w-[100%] bg-[#76abac] text-white flex flex-col text-center items-center justify-center overflow-auto">
             <ul className="w-[100%] h-[100%] flex flex-col gap-[1px] overflow-auto">
