@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import FetchData from './hooks/FetchData.jsx'
 import useDeleteTodo from './hooks/DeleteTodo.jsx'
 import EditTodo from './hooks/EditTodo.jsx'
 import CheckTodo from './hooks/CheckTodo.jsx'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import {
@@ -12,10 +12,19 @@ import {
   AddNewTodoStyled,
 } from './hooks/StyledComponents.jsx'
 const Home = () => {
+  const [openForm, setOpenForm] = useState(false)
   const { mutate: deleteTodo } = useDeleteTodo()
   const { mutate: newEditTodo } = EditTodo()
   const { mutate: newCheckTodo } = CheckTodo()
   const { data, isLoading, isError } = FetchData()
+
+  const addNewTodo = () => {
+    setOpenForm((prev) => !prev)
+  }
+
+  useEffect(() => {
+    console.log(openForm)
+  }, [openForm])
 
   console.log(isLoading, isError)
 
@@ -85,11 +94,12 @@ const Home = () => {
               })}
             </ul>
           </div>
-          <BtnWrap>
-            <SubmitBtnStyled>submit</SubmitBtnStyled>
-          </BtnWrap>
-          <AddNewTodoStyled>
-            <FontAwesomeIcon icon={faPlus} />
+          <AddNewTodoStyled onClick={addNewTodo}>
+            {openForm ? (
+              <FontAwesomeIcon icon={faCheck} className=" text-red-400" />
+            ) : (
+              <FontAwesomeIcon icon={faPlus} className=" text-black" />
+            )}
           </AddNewTodoStyled>
         </div>
       </div>

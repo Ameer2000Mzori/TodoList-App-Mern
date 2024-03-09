@@ -2,17 +2,17 @@ import styled, { keyframes } from 'styled-components'
 
 // if you want to add or use animations
 
-// const pulseAnimation = keyframes`
-//   0% {
-//     transform: scale(1);
-//   }
-//   50% {
-//     transform: scale(1.05);
-//   }
-//   100% {
-//     transform: scale(1);
-//   }
-// `
+const pulseAnimation = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+`
 
 export const BtnWrap = styled.div`
   height: 10vh;
@@ -70,13 +70,15 @@ export const AddNewTodoStyled = styled.button`
   text-align: center;
   justify-content: center;
   align-items: center;
+  background-color: white;
 
   &:hover {
-    background-color: white;
     color: black;
   }
 
   &:active {
     transform: scale(0.95);
   }
+
+  animation: ${pulseAnimation} 1s infinite alternate;
 `
